@@ -33,9 +33,9 @@ public class UserService {
     public LoginResponse loginUser(String email, String password) {
         Users users = userRepository.getUserByEmail(email);
         if(Objects.equals(users.getEmail(), email) && Objects.equals(users.getPassword(), password)) {
-            return new LoginResponse(users.getUserId(), "successfully loggedIn");
+            return new LoginResponse(users.getUserId(), "successfully loggedIn", "SUCCESS");
         }else{
-            return new LoginResponse(null, "invalid details");
+            return new LoginResponse(null, "invalid details","FAILED");
         }
 
     }
