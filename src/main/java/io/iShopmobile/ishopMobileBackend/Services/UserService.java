@@ -41,7 +41,7 @@ public class UserService {
     }
 
     public Users getUser(Long userId){
-        return userRepository.getById(userId);
+        return userRepository.getByUserId(userId);
     }
 
 

@@ -7,9 +7,7 @@ import io.iShopmobile.ishopMobileBackend.Services.UserService;
 import org.apache.catalina.User;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserController {
@@ -31,5 +29,11 @@ public class UserController {
     public ResponseEntity<?> userLogin(@RequestBody Users user){
         LoginResponse loginResponse = userService.loginUser(user.getEmail(), user.getPassword());
         return ResponseEntity.ok(loginResponse);
+    }
+
+    @GetMapping(value = "/users/getUserData/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getUser(@PathVariable("userId") long userId){
+        Users users = userService.getUser(userId);
+        return ResponseEntity.ok(users);
     }
 }
