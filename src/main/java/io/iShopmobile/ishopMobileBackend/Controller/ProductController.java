@@ -1,5 +1,6 @@
 package io.iShopmobile.ishopMobileBackend.Controller;
 
+import io.iShopmobile.ishopMobileBackend.Model.FeatureProduct;
 import io.iShopmobile.ishopMobileBackend.Model.Products;
 import io.iShopmobile.ishopMobileBackend.Response.ProductResponse;
 import io.iShopmobile.ishopMobileBackend.Services.ProductService;
@@ -35,6 +36,22 @@ public class ProductController {
     public ProductResponse addProduct(@RequestBody List<Products> products){
         try {
             productService.saveProduct(products);
+        }catch (Exception e){
+            logger.error(String.valueOf(e));
+        }
+        return new ProductResponse("Successfully Added");
+    }
+
+    @GetMapping(value = "/products/featuredProducts", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getFeaturedProducts(){
+        List<FeatureProduct> featureProducts = productService.getProductFeatured();
+        return ResponseEntity.ok(featureProducts);
+    }
+
+    @PostMapping(value = "/product/CreateProduct", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ProductResponse saveFeaturedProducts(@RequestBody List<FeatureProduct> featureProducts){
+        try {
+            productService.saveProductFeatured(featureProducts);
         }catch (Exception e){
             logger.error(String.valueOf(e));
         }
