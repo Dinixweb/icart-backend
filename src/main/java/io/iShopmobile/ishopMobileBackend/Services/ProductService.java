@@ -26,7 +26,6 @@ public class ProductService {
         return productRepository.findAll().stream()
                 .sorted(Comparator.comparing(e->e.getProductName())).collect(Collectors.toList());
     }
-
     public void saveProduct(List<Products> products){
         productRepository.saveAll(products);
 /*         products.stream().map(e->e.getSizes());
