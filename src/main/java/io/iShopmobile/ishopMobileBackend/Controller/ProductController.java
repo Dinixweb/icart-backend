@@ -48,7 +48,7 @@ public class ProductController {
         return ResponseEntity.ok(featureProducts);
     }
 
-    @PostMapping(value = "/product/CreateProduct", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/product/CreateFeatureProduct", produces = MediaType.APPLICATION_JSON_VALUE)
     public ProductResponse saveFeaturedProducts(@RequestBody List<FeatureProduct> featureProducts){
         try {
             productService.saveProductFeatured(featureProducts);
